@@ -1,6 +1,5 @@
 module Judge
-  def judge(each_result, each_object, final_results)
-    judge_result =
+  def judge(each_result, each_object, calucu_results )
     catch :done do
       if each_result.nil?
         puts <<-EOS
@@ -12,19 +11,21 @@ module Judge
         if select_continue_or_stop == 1
           puts "でわ、#{@title}の最初の質問からです"
           each_result = each_object.questions_start
-          throw :done , "エラーが発生しました。強制終了します。" if each_result.nil?
-          final_results << each_result
-          final_results.flatten!
+          if each_result.nil?
+            puts "エラーが発生しました。強制終了します。"
+            throw :done
+          end
+          calucu_results << each_result
+          calucu_results.flatten!
         elsif select_continue_or_stop == 2
           puts "またの利用をお待ちしております"
         else
           puts "不正な値です。診断を中止します。またのご利用をお待ちしております。"
         end
       else
-        final_results << each_result
-        final_results.flatten!
+        calucu_results << each_result
+        calucu_results.flatten!
       end
     end
-    puts judge_result
   end
 end
