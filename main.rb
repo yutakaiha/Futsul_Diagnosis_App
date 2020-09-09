@@ -47,15 +47,24 @@ if calucu_results .any?
   personal_skill.judge(personal_skill_result, personal_skill, calucu_results, special_addition_list)
 end
 
+
+#特別加算リスト（）
 special_addition_list.sort!
+
+#通常の最終集計結果
 final_result = calucu_results.sort
 final_result_length = final_result.length
 
-#集計結果からポジション項目番号の割合を算出する
-grouping_result = Calculation.grouping(final_result)
-rate_result = Calculation.rate_calculation(grouping_result, final_result_length)
+#最終集計結果からポジション項目番号別の割合を算出する(グループごとにハッシュ化されている)
+grouping_final_result = Calculation.grouping(final_result)
+rate_result = Calculation.rate_calculation(grouping_final_result, final_result_length)
+
+#特別加算リストをグループ化（ハッシュ形式)
+grouping_special_addition_list = Calculation.grouping(special_addition_list)
+addition_calculation_result = Calculation.addition_calculation(grouping_special_addition_list)
+
 
 p rate_result
-p "特別加算", special_addition_list
+p "特別加算", addition_calculation_result
 
 

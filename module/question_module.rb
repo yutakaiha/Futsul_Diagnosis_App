@@ -21,8 +21,10 @@ module Judge
           special_addition_list.flatten!
         elsif select_continue_or_stop == 2
           puts "またの利用をお待ちしております"
+          exit
         else
           puts "不正な値です。診断を中止します。またのご利用をお待ちしております。"
+          exit
         end
       else
         calucu_results << each_result
