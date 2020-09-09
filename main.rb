@@ -23,26 +23,31 @@ EOS
 #3種類の質問の結果を格納する配列を定義
 calucu_results = []
 
+#該当するポジション一つにしか当てはまらない回答結果（そのポジション固有の質問に該当した場合）の場合、最後の集計結果の際に特別加算する
+# つまり、「はい」を洗濯した結果のvalueのlengthが１になるものだけを格納していく。
+special_addition_list = []
+
 #合コンに関する質問による診断結果
 jointpaty = JointParty.new(JointParty::JOINT_PARTY_QUESTIONS)
 joint_party_result = jointpaty.questions_start
-jointpaty.judge(joint_party_result, jointpaty, calucu_results)
+jointpaty.judge(joint_party_result, jointpaty, calucu_results, special_addition_list)
 
 puts "\n"
 #フィジカルに関する質問による診断結果
 if calucu_results .any?
   physical = Physical.new(Physical::PHYSICAL_QUESTIONS)
   physical_result = physical.questions_start
-  physical.judge(physical_result, physical, calucu_results )
+  physical.judge(physical_result, physical, calucu_results, special_addition_list)
 end
 
 #性格や実スキルに関する質問による診断結果
 if calucu_results .any?
   personal_skill = PersonalSkill.new(PersonalSkill::PERSONALITY_QUESTIONS)
   personal_skill_result = personal_skill.questions_start
-  personal_skill.judge(personal_skill_result, personal_skill, calucu_results )
+  personal_skill.judge(personal_skill_result, personal_skill, calucu_results, special_addition_list)
 end
 
+special_addition_list.sort!
 final_result = calucu_results.sort
 final_result_length = final_result.length
 
@@ -51,6 +56,6 @@ grouping_result = Calculation.grouping(final_result)
 rate_result = Calculation.rate_calculation(grouping_result, final_result_length)
 
 p rate_result
-
+p "特別加算", special_addition_list
 
 

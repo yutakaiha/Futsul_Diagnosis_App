@@ -1,5 +1,5 @@
 module Judge
-  def judge(each_result, each_object, calucu_results )
+  def judge(each_result, each_object, calucu_results, special_addition_list)
     catch :done do
       if each_result.nil?
         puts <<-EOS
@@ -16,7 +16,9 @@ module Judge
             throw :done
           end
           calucu_results << each_result
+          special_addition_list << each_result.select{ |e| e.length == 1 }
           calucu_results.flatten!
+          special_addition_list.flatten!
         elsif select_continue_or_stop == 2
           puts "またの利用をお待ちしております"
         else
@@ -24,7 +26,9 @@ module Judge
         end
       else
         calucu_results << each_result
+        special_addition_list << each_result.select{ |e| e.length == 1 }
         calucu_results.flatten!
+        special_addition_list.flatten!
       end
     end
   end
