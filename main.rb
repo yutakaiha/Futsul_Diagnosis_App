@@ -64,6 +64,18 @@ grouping_special_addition_list = Calculation.grouping(special_addition_list)
 addition_calculation_result = Calculation.addition_calculation(grouping_special_addition_list)
 
 
+#s算出した項目ごとの割合に、特別加算を項目ごとに足す（merge）
+#この段階では割合は上位を算出する一つの基準にすぎないので、割合＝数値として捉え、そのまま特別加算点数を加える
+result_after_addition = Calculation.alternative_merge(rate_result, addition_calculation_result)
+
+##valueが最大のものを抽出する
+max_result = Calculation.confirm_max(result_after_addition)
+
+if max_result.size >= 2
+  
+end
+
+
 p rate_result
 p "特別加算", addition_calculation_result
 

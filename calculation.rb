@@ -13,4 +13,15 @@ class Calculation
     list.map{|key, value| [key, value * SPECIAL_POINT]}.to_h
   end
 
+  def self.alternative_merge(rate_result, addition_calculation_result)
+    rate_result.merge(addition_calculation_result) do |key, old_value, new_value|
+      old_value + new_value
+    end
+  end
+
+  def confirm_max(result_after_addition)
+    max_v = result_after_addition.values.max
+    result_after_addition.select{|key, value| value == max_v}
+  end
+
 end
