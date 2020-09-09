@@ -7,6 +7,7 @@ require_relative "position/pivo"
 require "./question/joint_party"
 require "./question/physical"
 require "./question/personal_skill"
+require_relative "calculation"
 
 puts <<-EOS
 __________________________________________________________________________
@@ -35,14 +36,21 @@ if calucu_results .any?
   physical.judge(physical_result, physical, calucu_results )
 end
 
-#合コンに関する質問による診断結果
+#性格や実スキルに関する質問による診断結果
 if calucu_results .any?
   personal_skill = PersonalSkill.new(PersonalSkill::PERSONALITY_QUESTIONS)
   personal_skill_result = personal_skill.questions_start
   personal_skill.judge(personal_skill_result, personal_skill, calucu_results )
 end
 
-FINAL_RESULT = calucu_results
+final_result = calucu_results.sort
+final_result_length = final_result.length
+
+#集計結果からポジション項目番号の割合を算出する
+grouping_result = Calculation.grouping(final_result)
+rate_result = Calculation.rate_calculation(grouping_result, final_result_length)
+
+p rate_result
 
 
 

@@ -27,8 +27,9 @@ class PersonalSkill
     puts PERSONALITY_SKILL_TEXT 
     list = []
     count = 0
-    all_answer = [1,2,3]
-    @questions.each_with_index(14) do |(key, value), i|
+    all_answer = [1, 2, 3]
+    
+    @questions.each.with_index(14) do |(key, value), i|
       puts "Q#{i} #{key}?"
       puts "Yes => １、No => ２、どちらでもない => ３"
       answer = gets.chomp.to_i
@@ -36,7 +37,7 @@ class PersonalSkill
       
       count += 1
       if all_answer.all?{ |a| a != answer} && count < 2
-        puts '「１」、「２」、「３」のいずれかで回答してください。'
+        puts "「１」、「２」、「３」のいずれかで回答してください。"
         redo
       elsif all_answer.all?{|a| a != answer} && count >= 2
         return 
