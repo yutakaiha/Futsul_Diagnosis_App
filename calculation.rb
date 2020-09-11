@@ -19,7 +19,7 @@ class Calculation
     end
   end
 
-  def confirm_max(result_after_addition)
+  def self.confirm_max(result_after_addition)
     max_v = result_after_addition.values.max
     result_after_addition.select{|key, value| value == max_v}
   end
