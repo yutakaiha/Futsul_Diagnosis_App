@@ -51,6 +51,10 @@ end
   final_result = calucu_results.sort
   final_result_length = final_result.length
 
+  
+  binding.pry
+  
+
   unless final_result.nil?
     #最終集計結果からポジション項目番号別の割合を算出する(グループごとにハッシュ化されている)
     grouping_final_result = Calculation.grouping(final_result)

@@ -1,36 +1,38 @@
-module Judge
-  def judge(each_result, each_object, calucu_results, special_addition_list)
-    if each_result.nil?
-      puts <<-EOS
-      不正の値のため回答を受け付けられませんでした。
-      #{@title}に関する質問から診断を再開しますか？
-      「Yes（再開）」→１、「No(診断終了)」→２
-      EOS
-      select_continue_or_stop = gets.chomp.to_i
-      if select_continue_or_stop == 1
-        puts "でわ、#{@title}の最初の質問からです"
-        puts ""
-        each_result = each_object.questions_start
-        if each_result.nil?
-          puts "エラーが発生しました。強制終了します。"
-          exit
-        end
-        calucu_results << each_result
-        special_addition_list << each_result.select{ |e| e.length == 1 }
-        calucu_results.flatten!
-        special_addition_list.flatten!
-      elsif select_continue_or_stop == 2
-        puts "またの利用をお待ちしております"
-        exit
-      else
-        puts "不正な値です。診断を中止します。またのご利用をお待ちしております。"
-        exit
+module Question
+  def questions_start
+    puts @text
+    list = []
+    count = 0
+    all_answer = [1, 2, 3]
+    question_number = question_number(@text)
+    @questions.each.with_index(question_number) do |question, i|
+      puts "Q#{i} #{question[0]}?"
+      puts "Yes => １、No => ２、どちらでもない => ３"
+      answer = gets.chomp.to_i
+      puts "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
+
+      count += 1
+      if all_answer.all?{|a| a != answer} && count < 2
+        puts '「１」、「２」、「３」のいずれかで回答してください。'
+        redo
+      elsif all_answer.all?{|a| a != answer} && count >= 2
+        return
       end
-    else
-      calucu_results << each_result
-      special_addition_list << each_result.select{ |e| e.length == 1 }
-      calucu_results.flatten!
-      special_addition_list.flatten!
+      count = 0
+      list << question[1] if answer == 1
+    end
+    puts "お疲れ様です。これで「#{@title}」に関する質問は終了です。"
+    list
+  end
+
+  def question_number(text)
+    case text
+    when JointParty::JOINT_PARTY_TEXT
+      1
+    when Physical::PHYSICAL_TEXT
+      10
+    when PersonalSkill::PERSONALITY_SKILL_TEXT
+      14
     end
   end
 end
