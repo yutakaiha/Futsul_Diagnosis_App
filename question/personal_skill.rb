@@ -19,9 +19,9 @@ class PersonalSkill
   
   EOS
 
-  def initialize(title: "性格、スキル", **params)
+  def initialize(title: "性格、スキル")
     @title = title
-    @questions = params
+    @questions = PERSONALITY_QUESTIONS
   end
 
   def questions_start

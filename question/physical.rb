@@ -19,9 +19,9 @@ class Physical
   
   EOS
   
-  def initialize(title: "フィジカル", **params)
+  def initialize(title: "フィジカル")
     @title = title
-    @questions = params
+    @questions = PHYSICAL_QUESTIONS
   end
 
   def questions_start

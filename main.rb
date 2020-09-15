@@ -24,21 +24,21 @@ calucu_results = []
 special_addition_list = []
 
 #合コンに関する質問による診断結果
-jointpaty = JointParty.new(JointParty::JOINT_PARTY_QUESTIONS)
+jointpaty = JointParty.new
 joint_party_result = jointpaty.questions_start
 jointpaty.judge(joint_party_result, jointpaty, calucu_results, special_addition_list)
 
 puts "\n"
 #フィジカルに関する質問による診断結果
 if calucu_results .any?
-  physical = Physical.new(Physical::PHYSICAL_QUESTIONS)
+  physical = Physical.new
   physical_result = physical.questions_start
   physical.judge(physical_result, physical, calucu_results, special_addition_list)
 end
 
 #性格や実スキルに関する質問による診断結果
 if calucu_results .any?
-  personal_skill = PersonalSkill.new(PersonalSkill::PERSONALITY_QUESTIONS)
+  personal_skill = PersonalSkill.new
   personal_skill_result = personal_skill.questions_start
   personal_skill.judge(personal_skill_result, personal_skill, calucu_results, special_addition_list)
 end

@@ -18,9 +18,9 @@ class JointParty
 
   EOS
 
-  def initialize(title: "合コン", **params)
+  def initialize(title: "合コン")
     @title = title
-    @questions = params
+    @questions = JOINT_PARTY_QUESTIONS
   end
 
   def questions_start
