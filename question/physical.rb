@@ -5,8 +5,10 @@ class Physical
   #モジュールをinclude
   include Judge
 
-  PHYSICAL_QUESTIONS = {:"フィジカルは強いほうだ" => [2,4], :"細かな動きが得意だ" => [3],
-                        :"体力には自信がある" => [3], :"動体視力には自信あり" => [1] }.freeze
+  # PHYSICAL_QUESTIONS = {:"フィジカルは強いほうだ" => [2,4], :"細かな動きが得意だ" => [3],
+  #                       :"体力には自信がある" => [3], :"動体視力には自信あり" => [1] }.freeze
+
+  PHYSICAL_QUESTIONS = [["フィジカルは強いほうだ", [2,4]],["細かな動きが得意だ", [3]], ["体力には自信がある", [3]], ["動体視力には自信あり", [1]]].map(&:freeze).freeze
 
   PHYSICAL_TEXT = <<-EOS
   *****************************************************************
@@ -29,8 +31,8 @@ class Physical
     list = []
     count = 0
     all_answer = [1,2,3]
-    @questions.each.with_index(10) do |(key, value), i|
-      puts "Q#{i} #{key}?"
+    @questions.each.with_index(10) do |question, i|
+      puts "Q#{i} #{question[0]}?"
       puts "Yes => １、No => ２、どちらでもない => ３"
       answer = gets.chomp.to_i
       puts "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
@@ -42,7 +44,7 @@ class Physical
         return
       end
       count = 0
-      list << value if answer == 1
+      list << question[1] if answer == 1
     end
     puts "お疲れ様です。これでフィジカル面の質問は終了です。"
     list
