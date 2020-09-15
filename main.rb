@@ -5,7 +5,7 @@ require "./question/physical"
 require "./question/personal_skill"
 require_relative "calculation"
 
-puts <<-EOS
+puts <<~EOS
 __________________________________________________________________________
 今からフットサル適性診断を開始します。
 3種類の質問に分けて質問していきます。
@@ -44,14 +44,14 @@ special_addition_list = []
 # end
 class_list = [JointParty, Physical, PersonalSkill]
 count = 1
-class_list.each do |c|
+class_list.each do |each_class|
   if count == 1
-    obj = c.new
+    obj = each_class.new
     obj_result = obj.questions_start
     obj.judge(obj_result, obj, calucu_results, special_addition_list)
   elsif count > 1 && count <= class_list.length
     if calucu_results.any?
-      obj = c.new
+      obj = each_class.new
       obj_result = obj.questions_start
       obj.judge(obj_result, obj, calucu_results, special_addition_list)
     end

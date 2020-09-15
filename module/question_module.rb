@@ -21,7 +21,11 @@ module Question
       count = 0
       list << question[1] if answer == 1
     end
-    puts "お疲れ様です。これで「#{@title}」に関する質問は終了です。"
+    puts <<~EOS
+
+    お疲れ様です。これで「#{@title}」に関する質問は終了です。
+
+    EOS
     list
   end
 
