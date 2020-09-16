@@ -13,11 +13,11 @@ module LoopQuestion
         obj_result = obj.questions_start
         obj.judge(obj_result, obj, calucu_results, special_addition_list)
       elsif count > 1 && count <= class_list.length
-        if calucu_results.any?
+        # if calucu_results.any?
           obj = each_class.new
           obj_result = obj.questions_start
           obj.judge(obj_result, obj, calucu_results, special_addition_list)
-        end
+        # end
       end
       count += 1
     end
