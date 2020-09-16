@@ -3,7 +3,6 @@ require_relative "player"
 require "./question/joint_party"
 require "./question/physical"
 require "./question/personal_skill"
-# require_relative "calculation"
 require "./module/loop_question"
 require "./module/calculation_module"
 
@@ -32,4 +31,3 @@ unless final_result.nil?
   player = Player.new
   player.fit_position(max_result)
 end
-
