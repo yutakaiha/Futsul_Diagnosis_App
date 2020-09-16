@@ -10,7 +10,7 @@ module Question
       puts "Q#{i} #{question[0]}?"
       puts "Yes => １、No => ２、どちらでもない => ３"
       answer = gets.chomp.to_i
-      puts "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
+      puts "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
 
       count += 1
       if all_answer.all?{|a| a != answer} && count < 2
