@@ -6,6 +6,7 @@ class JointParty
   #モジュールをinclude
   include Judge
   include Question
+  
   attr_accessor :title, :questions, :text
   
   JOINT_PARTY_QUESTIONS = [["合コンはとりあえずノリでしょ♪", [3,4]], ["タイプの子がいれば即ロックオンして１対１へ", [3,4]], ["もちろん夜のゴールまで狙うでしょ？普通？", [3,4]], ["夜のアシストに回ることもできちゃんだな〜", [3]],
