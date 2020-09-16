@@ -1,10 +1,10 @@
 module Question
   def questions_start
-    puts @text
+    puts self.text
     list = []
     count = 0
     all_answer = [1, 2, 3]
-    question_number = question_number(@text)
+    question_number = question_number(self.text)
     @questions.each.with_index(question_number) do |question, i|
       puts "Q#{i} #{question[0]}?"
       puts "Yes => １、No => ２、どちらでもない => ３"
@@ -23,7 +23,7 @@ module Question
     end
     puts <<~EOS
 
-    お疲れ様です。これで「#{@title}」に関する質問は終了です。
+    お疲れ様です。これで「#{self.title}」に関する質問は終了です。
 
     EOS
     list
