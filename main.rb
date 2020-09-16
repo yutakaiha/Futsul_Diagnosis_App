@@ -4,6 +4,7 @@ require "./question/joint_party"
 require "./question/physical"
 require "./question/personal_skill"
 require_relative "calculation"
+require "./module/loop_question"
 
 puts <<~EOS
 __________________________________________________________________________
@@ -23,45 +24,32 @@ calucu_results = []
 # つまり、「はい」を洗濯した結果のvalueのlengthが１になるものだけを格納していく。
 special_addition_list = []
 
-#合コンに関する質問による診断結果
-# jointpaty = JointParty.new
-# joint_party_result = jointpaty.questions_start
-# jointpaty.judge(joint_party_result, jointpaty, calucu_results, special_addition_list)
 
-# puts "\n"
-# #フィジカルに関する質問による診断結果
-# if calucu_results.any?
-#   physical = Physical.new
-#   physical_result = physical.questions_start
-#   physical.judge(physical_result, physical, calucu_results, special_addition_list)
+# class_list = [JointParty, Physical, PersonalSkill]
+# count = 1
+# class_list.each do |each_class|
+#   if count == 1
+#     obj = each_class.new
+#     obj_result = obj.questions_start
+#     obj.judge(obj_result, obj, calucu_results, special_addition_list)
+#   elsif count > 1 && count <= class_list.length
+#     if calucu_results.any?
+#       obj = each_class.new
+#       obj_result = obj.questions_start
+#       obj.judge(obj_result, obj, calucu_results, special_addition_list)
+#     end
+#   end
+#   count += 1
 # end
 
-# #性格や実スキルに関する質問による診断結果
-# if calucu_results.any?
-#   personal_skill = PersonalSkill.new
-#   personal_skill_result = personal_skill.questions_start
-#   personal_skill.judge(personal_skill_result, personal_skill, calucu_results, special_addition_list)
-# end
-class_list = [JointParty, Physical, PersonalSkill]
-count = 1
-class_list.each do |each_class|
-  if count == 1
-    obj = each_class.new
-    obj_result = obj.questions_start
-    obj.judge(obj_result, obj, calucu_results, special_addition_list)
-  elsif count > 1 && count <= class_list.length
-    if calucu_results.any?
-      obj = each_class.new
-      obj_result = obj.questions_start
-      obj.judge(obj_result, obj, calucu_results, special_addition_list)
-    end
-  end
-  count += 1
-end
+LoopQuestion.loop_each_question(calucu_results, special_addition_list)
+
 #特別加算リスト（）
 special_addition_list.sort!
+p special_addition_list
 #通常の最終集計結果
 final_result = calucu_results.sort
+p final_result
 final_result_length = final_result.length
 
 

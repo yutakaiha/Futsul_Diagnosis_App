@@ -6,6 +6,7 @@ class PersonalSkill
   #モジュールをinclude
   include Judge
   include Question
+  
   attr_accessor :title, :questions, :text
 
   PERSONALITY_QUESTIONS = [["ボールに対する恐怖はないか", [1]], ["状況判断は得意なほうだ", [1,4]], ["コーチングは得意なほうだ", [1]], ["人のカバーをするのが得意なほうだ", [1,2,3]],
