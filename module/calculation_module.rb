@@ -1,5 +1,15 @@
-class Calculation
+module Calculation
   SPECIAL_POINT = 1.5
+
+  def calcu_final_result(final_result, final_result_length, special_addition_list)
+    grouping_final_result = grouping(final_result)
+    rate_result = Calculation.rate_calculation(grouping_final_result, final_result_length)
+    grouping_special_addition_list = grouping(special_addition_list)
+    addition_calculation_result = addition_calculation(grouping_special_addition_list)
+    result_after_addition = alternative_merge(rate_result, addition_calculation_result)
+    max_result = confirm_max(result_after_addition)
+  end
+
   #グループ分けしてハッシュ形式に変換
   def self.grouping(result)
     result.group_by(&:itself).map{|key, value| [key, value.count]}.to_h
@@ -24,4 +34,5 @@ class Calculation
     result_after_addition.select{|key, value| value == max_v}
   end
 
+  module_function :calcu_final_result
 end
