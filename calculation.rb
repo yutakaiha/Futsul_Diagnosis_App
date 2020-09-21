@@ -1,9 +1,9 @@
-module Calculation
+class Calculation
   SPECIAL_POINT = 1.5
 
-  def calcu_final_result(final_result, final_result_length, special_addition_list)
+  def self.calcu_final_result(final_result, special_addition_list)
     grouping_final_result = grouping(final_result)
-    rate_result = Calculation.rate_calculation(grouping_final_result, final_result_length)
+    rate_result = rate_calculation(grouping_final_result, final_result.length)
     grouping_special_addition_list = grouping(special_addition_list)
     addition_calculation_result = addition_calculation(grouping_special_addition_list)
     result_after_addition = alternative_merge(rate_result, addition_calculation_result)
@@ -34,5 +34,4 @@ module Calculation
     result_after_addition.select{|key, value| value == max_v}
   end
 
-  module_function :calcu_final_result
 end

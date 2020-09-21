@@ -4,7 +4,7 @@ require "./question/joint_party"
 require "./question/physical"
 require "./question/personal_skill"
 require "./module/loop_question"
-require "./module/calculation_module"
+require_relative "calculation"
 
 puts <<~EOS
 
@@ -34,11 +34,11 @@ LoopQuestion.loop_each_question(calucu_results, special_addition_list)
 
 special_addition_list.sort!
 final_result = calucu_results.sort
-final_result_length = final_result.length
+# final_result_length = final_result.length
 
 
 if final_result.any?
-  max_result = Calculation.calcu_final_result(final_result, final_result_length, special_addition_list)
+  max_result = Calculation.calcu_final_result(final_result, special_addition_list)
   player = Player.new
   player.fit_position(max_result)
 else
