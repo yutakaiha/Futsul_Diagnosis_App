@@ -3,7 +3,6 @@ require_relative "player"
 require "./question/joint_party"
 require "./question/physical"
 require "./question/personal_skill"
-require "./module/loop_question"
 require_relative "calculation"
 
 puts <<~EOS
@@ -30,12 +29,23 @@ EOS
 calucu_results = []
 special_addition_list = []
 
-LoopQuestion.loop_each_question(calucu_results, special_addition_list)
+joint_party = JointParty.new
+joint_party.start_question(calucu_results, special_addition_list)
+
+physical = Physical.new
+physical.start_question(calucu_results, special_addition_list)
+
+personal_skill = PersonalSkill.new
+personal_skill.start_question(calucu_results, special_addition_list)
+
+
+# LoopQuestion.loop_each_question(calucu_results, special_addition_list)
 
 special_addition_list.sort!
 final_result = calucu_results.sort
 # final_result_length = final_result.length
-
+p final_result
+p special_addition_list
 
 if final_result.any?
   max_result = Calculation.calcu_final_result(final_result, special_addition_list)

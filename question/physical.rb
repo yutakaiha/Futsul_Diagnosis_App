@@ -1,12 +1,6 @@
 require "pry"
-require "./module/judge_module"
-require "./module/question_module"
-
-class Physical
-  #モジュールをinclude
-  include Judge
-  include Question
-  attr_reader :title, :questions, :text
+require_relative "question"
+class Physical < Question
 
   PHYSICAL_QUESTIONS = [["フィジカルは強いほうだ", [2,4]],
                         ["細かな動きが得意だ", [3]],
