@@ -1,12 +1,7 @@
 require "pry"
-require "./module/judge_module"
-require "./module/question_module"
+require_relative "question"
 
-class PersonalSkill
-  #モジュールをinclude
-  include Judge
-  include Question
-  attr_reader :title, :questions, :text
+class PersonalSkill < Question
 
   PERSONALITY_QUESTIONS = [["ボールに対する恐怖はないか", [1]],
                           ["状況判断は得意なほうだ", [1,4]],

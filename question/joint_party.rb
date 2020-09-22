@@ -1,12 +1,7 @@
 require "pry"
-require "./module/judge_module"
-require "./module/question_module"
+require_relative "question"
 
-class JointParty
-  #モジュールをinclude
-  include Judge
-  include Question
-  attr_reader :title, :questions, :text
+class JointParty < Question
   
   JOINT_PARTY_QUESTIONS = [["合コンはとりあえずノリでしょ♪", [3,4]],
                           ["タイプの子がいれば即ロックオンして１対１へ", [3,4]],
