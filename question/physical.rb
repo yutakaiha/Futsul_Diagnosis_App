@@ -1,6 +1,5 @@
 require "pry"
 require_relative "question"
-
 class Physical < Question
 
   PHYSICAL_QUESTIONS = [["フィジカルは強いほうだ", [2,4]],

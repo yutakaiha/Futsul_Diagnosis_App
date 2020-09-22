@@ -1,6 +1,5 @@
 require "pry"
 require_relative "question"
-
 class PersonalSkill < Question
 
   PERSONALITY_QUESTIONS = [["ボールに対する恐怖はないか", [1]],

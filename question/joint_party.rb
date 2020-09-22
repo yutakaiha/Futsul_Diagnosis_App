@@ -1,6 +1,5 @@
 require "pry"
 require_relative "question"
-
 class JointParty < Question
   
   JOINT_PARTY_QUESTIONS = [["合コンはとりあえずノリでしょ♪", [3,4]],

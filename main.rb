@@ -4,7 +4,6 @@ require "./question/joint_party"
 require "./question/physical"
 require "./question/personal_skill"
 require_relative "calculation"
-# require "./question/question.rb"
 
 puts <<~EOS
 
