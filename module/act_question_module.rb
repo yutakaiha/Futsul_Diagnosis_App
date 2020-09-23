@@ -1,12 +1,12 @@
 module ActQuestion
 
-  def questions_start
+  def questions_start(question_start_num)
     puts self.text
     list = []
     count = 0
     all_answer = [1, 2, 3]
-    question_number = question_number(self.text)
-    @questions.each.with_index(question_number) do |question, i|
+    # question_number = question_number(self.text)
+    @questions.each.with_index(question_start_num) do |question, i|
       puts "Q#{i} #{question[0]}?"
       puts "Yes => １、No => ２、どちらでもない => ３"
       answer = gets.chomp.to_i
@@ -56,14 +56,14 @@ module ActQuestion
     list
   end
 
-  def question_number(text)
-    case text
-    when JointParty::JOINT_PARTY_TEXT
-      1
-    when Physical::PHYSICAL_TEXT
-      10
-    when PersonalSkill::PERSONALITY_SKILL_TEXT
-      14
-    end
-  end
+  # def question_number(text)
+  #   case text
+  #   when JointParty::JOINT_PARTY_TEXT
+  #     1
+  #   when Physical::PHYSICAL_TEXT
+  #     10
+  #   when PersonalSkill::PERSONALITY_SKILL_TEXT
+  #     14
+  #   end
+  # end
 end
