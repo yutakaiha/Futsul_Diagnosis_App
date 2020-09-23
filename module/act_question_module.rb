@@ -5,7 +5,6 @@ module ActQuestion
     list = []
     count = 0
     all_answer = [1, 2, 3]
-    # question_number = question_number(self.text)
     @questions.each.with_index(question_start_num) do |question, i|
       puts "Q#{i} #{question[0]}?"
       puts "Yes => １、No => ２、どちらでもない => ３"
@@ -55,15 +54,4 @@ module ActQuestion
     puts "お疲れ様です。これで「#{self.title}」に関する質問は終了です。"
     list
   end
-
-  # def question_number(text)
-  #   case text
-  #   when JointParty::JOINT_PARTY_TEXT
-  #     1
-  #   when Physical::PHYSICAL_TEXT
-  #     10
-  #   when PersonalSkill::PERSONALITY_SKILL_TEXT
-  #     14
-  #   end
-  # end
 end
