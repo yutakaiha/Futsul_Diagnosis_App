@@ -50,8 +50,7 @@ p special_addition_list
 
 if final_result.any?
   max_result = Calculation.calcu_final_result(final_result, special_addition_list)
-  player = Player.new
-  player.fit_position(max_result)
+  Player.fit_position(max_result)
 else
   puts <<~EOS
 

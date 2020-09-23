@@ -1,18 +1,13 @@
 require "./module/diagnosis"
 class Player
-  include Diagnosis
-  attr_accessor :position
+  extend Diagnosis
 
-  def initialize(position: "")
-    @position = position
+  def self.fit_position(result)
+    positions = self.diagnosis(result)
+    self.position_explanation(positions)
   end
 
-  def fit_position(result)
-    @position = self.diagnosis(result)
-    self.position_explanation
-  end
-
-  def position_explanation
+  def self.position_explanation(positions)
     puts <<~EOS
 
     ---------------------------診断中---------------------------
@@ -28,10 +23,10 @@ class Player
 
     EOS
 
-    if @position .size >= 2
+    if positions.size >= 2
       puts "************************************診断結果************************************"
       puts "あなたに適性と思われるポジションが複数存在しました❗️"
-      @position.each.with_index(1) do |position, i|
+      positions.each.with_index(1) do |position, i|
         puts "⭐️#{i}つ目は#{position}です⭐️"
       end
       puts <<~EOS
@@ -47,14 +42,14 @@ class Player
     else
       puts <<~EOS
       ---------------------------診断結果--------------------------------
-      ⭐️あなたの適性ポジションは#{@position}です⭐️                               
-      現時点で自身のポジションが#{@position}なら、「No Doubt!！」           
+      ⭐️あなたの適性ポジションは#{positions}です⭐️                               
+      現時点で自身のポジションが#{positions}なら、「No Doubt!！」           
       一つのポジションを極め、圧倒的なスペシャリストを目指しましょう。 
       あなたの専門的なスキルがここぞというタイミングで発揮されれば、    
       チームのピンチを何度も救うことになるでしょう。                   
-      いや、私は#{@position}なんてやったことないよ〜という人でも、          
+      いや、私は#{positions}なんてやったことないよ〜という人でも、          
       自身の知られざる才能を開花させるチャンスと思って、               
-      一度#{@position}にチャレンジしてみてはいかがでしょうか？              
+      一度#{positions}にチャレンジしてみてはいかがでしょうか？              
       -------------------------------------------------------------------
       ※各ポジション別の説明は下記を参考にしてみてください。
       
